@@ -24,9 +24,16 @@ class Person: NSObject {
         print("Person对象的属性有 \(outCount) 个!")
         
         for i in 0..<Int(outCount) {
-            let cStr = property_getName(list![i])
-            let str = String(utf8String: cStr!)
-            print(str!)
+//            let p = list![i]
+//            let cStr = property_getName(p!)
+//            let str = String(utf8String: cStr!)
+//            print(str!)
+            
+            guard let p = list?[i], let cStr = property_getName(p), let str = String(utf8String: cStr) else {
+                continue
+            }
+            
+            print(str)
         }
         
         free(list!)
